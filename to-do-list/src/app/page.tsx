@@ -11,13 +11,22 @@ export default function Home() {
     { label: 'Comprar o bolo', checked: false}
   ]
   )
+  const botaoClicou = () => {
+    setItemInput('')
+    if (itemInput){
+    setList([
+      
+      ...list,
+      { label: itemInput, checked: false}
+    ])}
+  }
 
   return(
     <div className="flex flex-col items-center">
       
       <div className="py-3 text-3xl">Lista de tarefas</div>
       
-      <div className="flex mt-5 h-16 w-96 justify-center items-center bg-slate-700 rounded-sm">
+      <div className="flex mb-5 mt-5 h-16 w-96 justify-center items-center bg-slate-700 rounded-sm">
         <input 
         type="text" 
         placeholder="O que deseja fazer?"
@@ -25,12 +34,12 @@ export default function Home() {
         value={itemInput}
         onChange={e => setItemInput(e.target.value)}
         />
-        <button>Adicionar</button>
+        <button onClick={botaoClicou} className="border p-1.5 bg-gray-600 border-gray-800 text-black  rounded-lg ">Adicionar</button>
       </div>
 
       <div>
         {list.map(item => (
-          <li>{item.label} - <button className="hover:underline">[ deletar ]</button></li>
+          <li>{item.label} - <button className="hover:underline py-1">[ deletar ]</button></li>
         ))}
       </div>
       
