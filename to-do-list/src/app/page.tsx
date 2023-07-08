@@ -21,6 +21,10 @@ export default function Home() {
     ])}
   }
 
+  const deleteItem = (index: number) => {
+    setList(list.filter((item, key) => key !== index))
+  }
+
   return(
     <div className="flex flex-col items-center">
       
@@ -38,8 +42,8 @@ export default function Home() {
       </div>
 
       <div>
-        {list.map(item => (
-          <li>{item.label} - <button className="hover:underline py-1">[ deletar ]</button></li>
+        {list.map((item, index) => (
+          <li key={index}>{item.label} - <button onClick={() => deleteItem(index)} className="hover:underline py-1">[ deletar ]</button></li>
         ))}
       </div>
       
