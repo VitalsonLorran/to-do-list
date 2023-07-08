@@ -25,6 +25,12 @@ export default function Home() {
     setList(list.filter((item, key) => key !== index))
   }
 
+  const toggleItem = (index: number) => {
+    let newList = [...list]
+    newList[index].checked = !newList[index].checked
+    setList(newList)
+  }
+
   return(
     <div className="flex flex-col items-center">
       
@@ -43,7 +49,11 @@ export default function Home() {
 
       <div>
         {list.map((item, index) => (
-          <li key={index}>{item.label} - <button onClick={() => deleteItem(index)} className="hover:underline py-1">[ deletar ]</button></li>
+          <li key={index}>
+            <input onClick={() => toggleItem(index)} type="checkbox" checked={item.checked} className="h-6 w-6 mr-3"/>
+            {item.label} 
+            - <button onClick={() => deleteItem(index)} className="hover:underline py-1">[ deletar ]</button>
+          </li>
         ))}
       </div>
       
